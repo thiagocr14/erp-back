@@ -1,0 +1,15 @@
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\bin\Debug\net8.0\ErpAcademico.Application.deps.json
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\bin\Debug\net8.0\ErpAcademico.Application.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\bin\Debug\net8.0\ErpAcademico.Application.pdb
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\bin\Debug\net8.0\ErpAcademico.Domain.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\bin\Debug\net8.0\ErpAcademico.Domain.pdb
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.csproj.AssemblyReference.cache
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.AssemblyInfoInputs.cache
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.AssemblyInfo.cs
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.csproj.CoreCompileInputs.cache
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcade.05304B32.Up2Date
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\refint\ErpAcademico.Application.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.pdb
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ref\ErpAcademico.Application.dll

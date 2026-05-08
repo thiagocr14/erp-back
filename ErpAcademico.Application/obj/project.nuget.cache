@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Yb/izpz+o88=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thiago.nascimento\\Desktop\\ERP\\ErpAcademico.Application\\ErpAcademico.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thiago.nascimento\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

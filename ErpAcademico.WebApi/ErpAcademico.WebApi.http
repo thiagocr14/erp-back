@@ -1,0 +1,6 @@
+@ErpAcademico.WebApi_HostAddress = http://localhost:5197
+
+GET {{ErpAcademico.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
