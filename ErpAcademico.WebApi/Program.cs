@@ -24,15 +24,17 @@ builder.Services.AddScoped<ProdutoService>();
 
 builder.Services.AddScoped<VendaService>();
 
-builder.Services.AddScoped<DashboardService>();
-
 builder.Services.AddScoped<OrcamentoService>();
 
-builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<DashboardService>();
+
+builder.Services.AddScoped<EstoqueService>();
 
 builder.Services.AddScoped<MovimentacaoEstoqueService>();
 
 builder.Services.AddScoped<RelatorioService>();
+
+builder.Services.AddScoped<AuthService>();
 
 builder.Services
     .AddControllers();
@@ -151,8 +153,21 @@ builder.Services
                         Encoding.UTF8.GetBytes(jwtKey!))
             };
     });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(
+                "http://localhost:3000",
+                "http://172.16.22.28:3000"
+              )
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
+app.UseCors();
 
 app.UseSwagger();
 

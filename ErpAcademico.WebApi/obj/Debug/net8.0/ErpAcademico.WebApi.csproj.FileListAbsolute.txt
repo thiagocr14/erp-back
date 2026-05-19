@@ -127,3 +127,4 @@ C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.WebApi\bin\Debug\net8.0\Micr
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.WebApi\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.WebApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.WebApi\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.WebApi\obj\Debug\net8.0\ErpAcademico.WebApi.sourcelink.json

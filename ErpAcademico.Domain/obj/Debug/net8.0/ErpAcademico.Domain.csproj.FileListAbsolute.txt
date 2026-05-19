@@ -9,3 +9,4 @@ C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Domain\obj\Debug\net8.0\ErpA
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Domain\obj\Debug\net8.0\refint\ErpAcademico.Domain.dll
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Domain\obj\Debug\net8.0\ErpAcademico.Domain.pdb
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Domain\obj\Debug\net8.0\ref\ErpAcademico.Domain.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Domain\obj\Debug\net8.0\ErpAcademico.Domain.sourcelink.json

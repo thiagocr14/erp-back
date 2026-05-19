@@ -11,7 +11,7 @@ public class RealizarVendaDtoValidator
         RuleFor(x => x.Itens)
             .NotEmpty()
             .WithMessage(
-                "A venda deve possuir ao menos um item.");
+                "A venda deve possuir itens.");
 
         RuleForEach(x => x.Itens)
             .ChildRules(item =>
@@ -24,7 +24,7 @@ public class RealizarVendaDtoValidator
                 item.RuleFor(i => i.Quantidade)
                     .GreaterThan(0)
                     .WithMessage(
-                        "A quantidade deve ser maior que zero.");
+                        "Quantidade deve ser maior que zero.");
             });
     }
 }

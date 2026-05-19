@@ -3,6 +3,7 @@ using ErpAcademico.Domain.Entities;
 using ErpAcademico.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using ErpAcademico.Domain.Enums;
+using ErpAcademico.Domain.Exceptions;
 
 namespace ErpAcademico.Infrastructure.Services;
 
@@ -40,8 +41,8 @@ public class VendaService
                 if (produto.QuantidadeAtual <
                     itemDto.Quantidade)
                 {
-                    throw new Exception(
-                        $"Estoque insuficiente para o produto {produto.Nome}");
+                    throw new NegocioException(
+    $"Estoque insuficiente para o produto {produto.Nome}");
                 }
                 
 

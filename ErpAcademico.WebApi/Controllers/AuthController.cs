@@ -29,16 +29,15 @@ public class AuthController : ControllerBase
         });
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(
-        LoginDto dto)
+ [HttpPost("login")]
+public async Task<IActionResult> Login(LoginDto dto)
+{
+    var token = await _authService.Login(dto);
+    return Ok(new ResponseDto<object>
     {
-        var token =
-            await _authService.Login(dto);
-
-        return Ok(new
-        {
-            token
-        });
-    }
+        Sucesso = true,
+        Mensagem = "Login realizado com sucesso.",
+        Dados = new { token, usuario = new { id = 0, nome = "Usuário", email = dto.Email } }
+    });
 }
+    }

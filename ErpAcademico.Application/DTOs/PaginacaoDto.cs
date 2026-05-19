@@ -10,6 +10,6 @@ public class PaginacaoDto<T>
 
     public int TotalPaginas { get; set; }
 
-    public List<T> Dados { get; set; }
-        = [];
+    public List<T> Itens { get; set; }
+        = new();
 }

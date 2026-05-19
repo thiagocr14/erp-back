@@ -33,9 +33,10 @@ public class ProdutoService
     public async Task<List<Produto>> ObterTodos()
     {
         return await _context.Produtos
-            .AsNoTracking()
-            .OrderBy(p => p.Nome)
-            .ToListAsync();}
+                        .AsNoTracking()
+                        .Where(p => p.Ativo)
+                        .OrderBy(p => p.Nome)
+                        .ToListAsync();;}
     
     public async Task<IEnumerable<ProdutoDto>>
     ObterComFiltro(
@@ -43,8 +44,9 @@ public class ProdutoService
 {
     var query =
         _context.Produtos
-            .AsNoTracking()
-            .AsQueryable();
+    .AsNoTracking()
+    .Where(p => p.Ativo)
+    .AsQueryable();
 
     if (!string.IsNullOrWhiteSpace(
         filtro.Nome))
@@ -85,5 +87,36 @@ public class ProdutoService
                 p.EstoqueIdeal
         })
         .ToListAsync();}
+        public async Task DesativarProduto(Guid id)
+{
+    var produto =
+        await _context.Produtos
+            .FirstOrDefaultAsync(p =>
+                p.Id == id);
+
+    if (produto is null)
+        throw new Exception(
+            "Produto não encontrado.");
+
+    produto.Desativar();
+
+    await _context.SaveChangesAsync();
+}
+
+public async Task RestaurarProduto(Guid id)
+{
+    var produto =
+        await _context.Produtos
+            .FirstOrDefaultAsync(p =>
+                p.Id == id);
+
+    if (produto is null)
+        throw new Exception(
+            "Produto não encontrado.");
+
+    produto.Reativar();
+
+    await _context.SaveChangesAsync();
+}
 }
     

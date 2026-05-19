@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
-using ErpAcademico.Application.Exceptions;
+
+using ErpAcademico.Domain.Exceptions;
 
 namespace ErpAcademico.WebApi.Middlewares;
 
@@ -59,10 +60,10 @@ public class ErrorHandlingMiddleware
                         excecao.Message
                     ),
 
-                KeyNotFoundException =>
+                NaoEncontradoException =>
                     (
                         HttpStatusCode.NotFound,
-                        "Recurso não encontrado."
+                        excecao.Message
                     ),
 
                 UnauthorizedAccessException =>

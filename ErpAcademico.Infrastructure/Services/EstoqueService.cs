@@ -3,6 +3,7 @@ using ErpAcademico.Domain.Entities;
 using ErpAcademico.Domain.Enums;
 using ErpAcademico.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using ErpAcademico.Domain.Exceptions;
 
 namespace ErpAcademico.Infrastructure.Services;
 
@@ -25,9 +26,10 @@ public class EstoqueService
                     p.Id == dto.ProdutoId);
 
         if (produto is null)
-            throw new Exception(
-                "Produto não encontrado.");
+          throw new NaoEncontradoException(
+            "Produto não encontrado.");
 
+            
         produto.AdicionarEstoque(
             dto.Quantidade);
 
@@ -54,8 +56,8 @@ public class EstoqueService
                     p.Id == dto.ProdutoId);
 
         if (produto is null)
-            throw new Exception(
-                "Produto não encontrado.");
+           throw new NaoEncontradoException(
+            "Produto não encontrado.");
 
         var diferenca =
             dto.NovaQuantidade -
@@ -139,7 +141,7 @@ return new
             totalRegistros /
             (double)filtro.TamanhoPagina),
 
-    Dados = movimentacoes
+    Itens = movimentacoes
         .Select(m =>
             new MovimentacaoEstoqueDto
             {

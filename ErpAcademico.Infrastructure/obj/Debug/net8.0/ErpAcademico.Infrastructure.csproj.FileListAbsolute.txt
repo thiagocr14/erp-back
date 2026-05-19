@@ -17,3 +17,4 @@ C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Infrastructure\obj\Debug\net
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Infrastructure\obj\Debug\net8.0\ErpAcademico.Infrastructure.pdb
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Infrastructure\obj\Debug\net8.0\ErpAcademico.Infrastructure.genruntimeconfig.cache
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Infrastructure\obj\Debug\net8.0\ref\ErpAcademico.Infrastructure.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Infrastructure\obj\Debug\net8.0\ErpAcademico.Infrastructure.sourcelink.json

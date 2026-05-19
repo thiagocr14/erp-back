@@ -1,6 +1,6 @@
 # ERP Acadêmico — Documentação Mestre de Arquitetura
 
-## Objetivo do Projeto
+# Objetivo do Projeto
 
 Construir um ERP Acadêmico funcional focado em:
 
@@ -22,6 +22,31 @@ O projeto prioriza:
 
 ---
 
+# Filosofia do Projeto
+
+Este ERP segue:
+
+```txt
+Clean Architecture pragmática
+```
+
+com foco em:
+
+* aprendizado sólido;
+* organização profissional;
+* escalabilidade gradual;
+* clareza arquitetural;
+* simplicidade operacional.
+
+O projeto NÃO busca:
+
+* hiper abstração;
+* arquitetura enterprise exagerada;
+* complexidade prematura;
+* patterns desnecessários.
+
+---
+
 # Stack Técnica
 
 ## Backend
@@ -34,6 +59,7 @@ O projeto prioriza:
 * JWT Authentication
 * FluentValidation
 * ResponseDto Pattern
+
 ---
 
 # Estrutura do Projeto
@@ -47,17 +73,43 @@ ErpAcademico.WebApi
 
 ---
 
+# Estrutura de Pastas Recomendada
+
+```txt
+Domain
+ ├── Entities
+ ├── Enums
+ └── Exceptions
+
+Application
+ ├── DTOs
+ └── Validators
+
+Infrastructure
+ ├── Data
+ ├── Services
+ └── Migrations
+
+WebApi
+ ├── Controllers
+ ├── Middleware
+ └── Configurations
+```
+
+---
+
 # Regras Arquiteturais
 
-## Domain
+# Domain
 
 Responsável por:
 
 * entidades;
 * enums;
-* regras centrais de domínio.
+* exceções de domínio;
+* regras centrais de negócio.
 
-### NÃO pode:
+## NÃO pode:
 
 * acessar banco;
 * usar Entity Framework;
@@ -66,23 +118,24 @@ Responsável por:
 
 ---
 
-## Application
+# Application
 
 Responsável por:
 
 * DTOs;
-* contratos futuros;
 * validações;
+* contratos;
 * objetos de transferência.
 
-### NÃO deve:
+## NÃO deve:
 
-* conter acesso direto ao banco;
-* conter lógica pesada de infraestrutura.
+* acessar banco diretamente;
+* conter infraestrutura;
+* conter lógica pesada de persistência.
 
 ---
 
-## Infrastructure
+# Infrastructure
 
 Responsável por:
 
@@ -93,7 +146,7 @@ Responsável por:
 * acesso a dados;
 * integrações.
 
-### Contém:
+## Contém:
 
 * ProdutoService
 * VendaService
@@ -102,21 +155,21 @@ Responsável por:
 * EstoqueService
 * RelatorioService
 * AuthService
-* MovimentacaoEstoqueService
 
 ---
 
-## WebApi
+# WebApi
 
 Responsável por:
 
 * Controllers;
 * Swagger;
-* JWT middleware;
 * configuração da aplicação;
+* autenticação JWT;
+* middlewares;
 * endpoints.
 
-### Controllers devem ser:
+## Controllers devem ser:
 
 * finos;
 * simples;
@@ -131,11 +184,11 @@ Toda lógica deve ficar:
 
 # Convenções do Projeto
 
-## Entidades
+# Entidades
 
 Sempre singular.
 
-Exemplos:
+## Exemplos
 
 ```txt
 Produto
@@ -147,11 +200,11 @@ MovimentacaoEstoque
 
 ---
 
-## DbSet
+# DbSet
 
 Sempre plural.
 
-Exemplos:
+## Exemplos
 
 ```txt
 Produtos
@@ -163,11 +216,11 @@ MovimentacoesEstoque
 
 ---
 
-## Controllers
+# Controllers
 
 Sempre plural.
 
-Exemplos:
+## Exemplos
 
 ```txt
 ProdutosController
@@ -177,18 +230,131 @@ RelatoriosController
 
 ---
 
-## DTOs
+# DTOs
 
 Separados por responsabilidade.
 
-Exemplos:
+## Exemplos
 
 ```txt
 CriarProdutoDto
 RealizarVendaDto
 DashboardDto
 EntradaEstoqueDto
+FiltroMovimentacaoDto
 ```
+
+---
+
+# Convenções Obrigatórias
+
+* Toda entrada deve usar DTO
+* Toda saída deve usar ResponseDto
+* Toda listagem deve ser paginada
+* Nunca expor entidades diretamente
+* Controllers não acessam DbContext
+* Toda alteração de estoque deve gerar movimentação
+* Toda venda deve ser transacional
+* Toda validação deve usar FluentValidation
+* Toda listagem deve permitir filtros quando necessário
+
+---
+
+# Response Pattern
+
+Toda resposta da API deve seguir:
+
+```json
+{
+  "sucesso": true,
+  "mensagem": "Operação realizada.",
+  "dados": {},
+  "erros": []
+}
+```
+
+---
+
+# Regras do Response Pattern
+
+* Controllers nunca retornam entidades diretamente
+* Exceptions devem passar pelo middleware global
+* Erros devem retornar lista padronizada
+* Responses de listagem devem usar paginação
+* Responses devem ser previsíveis para o frontend
+
+---
+
+# Paginação
+
+Toda listagem deve utilizar:
+
+* Pagina
+* TamanhoPagina
+
+## Estrutura padrão
+
+```json
+{
+  "pagina": 1,
+  "tamanhoPagina": 10,
+  "totalRegistros": 100,
+  "totalPaginas": 10,
+  "dados": []
+}
+```
+
+---
+
+# Filtros
+
+Filtros devem:
+
+* utilizar IQueryable;
+* evitar carregamento desnecessário;
+* usar paginação obrigatoriamente;
+* utilizar ILike para busca textual no PostgreSQL.
+
+---
+
+# Validação
+
+Validações devem ser implementadas com:
+
+```txt
+FluentValidation
+```
+
+## Estrutura
+
+```txt
+Application
+ └── Validators
+```
+
+## Evitar
+
+* validações inline em controllers;
+* validações repetidas em services;
+* validações duplicadas.
+
+---
+
+# Middleware Global de Erros
+
+A API possui middleware global para:
+
+* tratamento de exceptions;
+* padronização de erros;
+* logging;
+* respostas HTTP padronizadas.
+
+## Tipos tratados
+
+* NegocioException
+* KeyNotFoundException
+* UnauthorizedAccessException
+* Exception genérica
 
 ---
 
@@ -241,7 +407,7 @@ Ajuste:
 
 Toda alteração de estoque deve gerar histórico.
 
-Tipos:
+## Tipos
 
 ```txt
 Entrada
@@ -293,15 +459,18 @@ Relatórios devem:
 * usar filtros;
 * usar IQueryable;
 * evitar carregar dados desnecessários;
-* priorizar performance.
+* priorizar performance;
+* retornar dados enxutos.
 
 ---
 
 # Autenticação
 
-Sistema usa:
+Sistema utiliza:
 
-* JWT Bearer Token.
+```txt
+JWT Bearer Token
+```
 
 Endpoints protegidos usam:
 
@@ -311,36 +480,22 @@ Endpoints protegidos usam:
 
 ---
 
-# Padrões Proibidos Atualmente
+# Diretrizes de Performance
 
-NÃO introduzir:
+Preferir:
 
-* MediatR;
-* CQRS complexo;
-* Repository Pattern desnecessário;
-* Unit of Work customizado;
-* AutoMapper;
-* microsserviços;
-* abstrações excessivas.
+* AsNoTracking() em consultas;
+* IQueryable para filtros;
+* paginação em listagens;
+* Select() para projeções;
+* carregamento mínimo necessário.
 
-Motivos:
+Evitar:
 
-* projeto educacional;
-* notebook com pouca RAM;
-* foco em aprendizado sólido;
-* simplicidade e clareza.
-
----
-
-# Diretrizes de Código
-
-## Prioridades
-
-1. Clareza
-2. Simplicidade
-3. Legibilidade
-4. Performance
-5. Escalabilidade gradual
+* ToList() prematuro;
+* Include() desnecessário;
+* carregar entidades completas sem necessidade;
+* consultas sem paginação.
 
 ---
 
@@ -363,11 +518,12 @@ Controllers:
 * chamam services;
 * retornam IActionResult.
 
-Controllers NÃO devem:
+## Controllers NÃO devem:
 
 * acessar banco diretamente;
 * conter regra de negócio;
-* conter cálculos.
+* conter cálculos;
+* conter validação complexa.
 
 ---
 
@@ -379,12 +535,13 @@ Entidades:
 * controlam integridade;
 * possuem métodos de domínio.
 
-Exemplos:
+## Exemplos
 
 ```txt
 BaixarEstoque()
 AdicionarEstoque()
 AjustarEstoque()
+DebitarEstoque()
 ```
 
 ---
@@ -393,11 +550,15 @@ AjustarEstoque()
 
 Banco:
 
-* PostgreSQL.
+```txt
+PostgreSQL
+```
 
 ORM:
 
-* Entity Framework Core.
+```txt
+Entity Framework Core
+```
 
 Precisão decimal padrão:
 
@@ -407,33 +568,59 @@ Precisão decimal padrão:
 
 ---
 
-# Estrutura de Pastas Recomendada
+# Convenções de Migrations
 
-```txt
-Domain
- ├── Entities
- └── Enums
+## Criar migration
 
-Application
- ├── DTOs
- └── Validators
-
-Infrastructure
- ├── Data
- ├── Services
- └── Migrations
-
-WebApi
- ├── Controllers
- ├── Middleware
- └── Configurations
+```powershell
+dotnet ef migrations add NomeMigration --project ErpAcademico.Infrastructure --startup-project ErpAcademico.WebApi
 ```
+
+## Aplicar migration
+
+```powershell
+dotnet ef database update --project ErpAcademico.Infrastructure --startup-project ErpAcademico.WebApi
+```
+
+---
+
+# Padrões Proibidos Atualmente
+
+NÃO introduzir:
+
+* MediatR;
+* CQRS complexo;
+* Repository Pattern desnecessário;
+* Unit of Work customizado;
+* AutoMapper;
+* microsserviços;
+* abstrações excessivas.
+
+## Motivos
+
+* projeto educacional;
+* notebook com pouca RAM;
+* foco em aprendizado sólido;
+* simplicidade e clareza;
+* evitar overengineering.
+
+---
+
+# Diretrizes de Código
+
+## Prioridades
+
+1. Clareza
+2. Simplicidade
+3. Legibilidade
+4. Performance
+5. Escalabilidade gradual
 
 ---
 
 # Endpoints Existentes
 
-## Auth
+# Auth
 
 ```txt
 POST /api/auth/register
@@ -442,16 +629,17 @@ POST /api/auth/login
 
 ---
 
-## Produtos
+# Produtos
 
 ```txt
 GET /api/produtos
 POST /api/produtos
+GET /api/produtos/filtro
 ```
 
 ---
 
-## Vendas
+# Vendas
 
 ```txt
 POST /api/vendas
@@ -459,7 +647,7 @@ POST /api/vendas
 
 ---
 
-## Orçamentos
+# Orçamentos
 
 ```txt
 POST /api/orcamentos
@@ -468,16 +656,17 @@ POST /api/orcamentos/{id}/converter
 
 ---
 
-## Estoque
+# Estoque
 
 ```txt
 POST /api/estoque/entrada
 POST /api/estoque/ajuste
+GET /api/estoque/movimentacoes
 ```
 
 ---
 
-## Dashboard
+# Dashboard
 
 ```txt
 GET /api/dashboard
@@ -486,18 +675,10 @@ GET /api/dashboard/detalhado
 
 ---
 
-## Movimentações
+# Relatórios
 
 ```txt
-GET /api/movimentacoes
-```
-
----
-
-## Relatórios
-
-```txt
-GET /api/relatorios/vendas
+GET /api/relatorios/fechamento-dia
 ```
 
 ---
@@ -513,25 +694,30 @@ O sistema atualmente possui:
 * movimentação de estoque;
 * dashboard;
 * relatórios;
-* auditoria básica.
-* Paginação e Filtros de Busca (ILike)
-* Padronização de resposta
-* Middleware de exceção customizado
+* auditoria básica;
+* paginação;
+* filtros com ILike;
+* ResponseDto;
+* middleware global;
+* FluentValidation.
 
 ---
 
 # Próximas Etapas Recomendadas
 
-## Curto Prazo
+# Curto Prazo
 
-* Exclusão lógica
 * Soft delete
 * Logs
 * Melhorias de validação
-* Repository Pattern
+* Exclusão lógica
+* Ajustes de auditoria
+* Melhorias de exceptions
+* Padronização final de responses
+
 ---
 
-## Médio Prazo
+# Médio Prazo
 
 * Clientes
 * Fornecedores
@@ -542,13 +728,13 @@ O sistema atualmente possui:
 
 ---
 
-## Longo Prazo
+# Longo Prazo
 
 * Front-end React
 * Docker
 * Deploy cloud
-* Cache
 * Redis
+* Cache
 * Testes automatizados
 * CI/CD
 * Multiempresa
@@ -567,29 +753,8 @@ Antes de sugerir código:
 6. NÃO adicionar abstrações desnecessárias.
 7. Seguir naming conventions existentes.
 8. Priorizar simplicidade.
-
----
-
-# Filosofia do Projeto
-
-Este ERP segue:
-
-```txt
-Clean Architecture simplificada
-```
-
-com foco em:
-
-* aprendizado sólido;
-* organização profissional;
-* escalabilidade gradual;
-* clareza arquitetural.
-
-O projeto NÃO busca:
-
-* hiper abstração;
-* arquitetura enterprise exagerada;
-* complexidade prematura.
+9. Evitar overengineering.
+10. Respeitar ResponseDto e paginação.
 
 ---
 

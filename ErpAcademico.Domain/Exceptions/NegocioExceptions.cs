@@ -1,4 +1,4 @@
-namespace ErpAcademico.Application.Exceptions;
+namespace ErpAcademico.Domain.Exceptions;
 
 public class NegocioException
     : Exception

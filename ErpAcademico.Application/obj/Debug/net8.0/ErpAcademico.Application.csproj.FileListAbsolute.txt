@@ -13,3 +13,4 @@ C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\refint\ErpAcademico.Application.dll
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.pdb
 C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ref\ErpAcademico.Application.dll
+C:\Users\thiago.nascimento\Desktop\ERP\ErpAcademico.Application\obj\Debug\net8.0\ErpAcademico.Application.sourcelink.json

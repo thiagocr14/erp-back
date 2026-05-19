@@ -17,10 +17,5 @@ public class EntradaEstoqueValidator
             .GreaterThan(0)
             .WithMessage(
                 "Quantidade deve ser maior que zero.");
-
-        RuleFor(x => x.Observacao)
-            .MaximumLength(200)
-            .WithMessage(
-                "Observação deve ter no máximo 200 caracteres.");
     }
 }

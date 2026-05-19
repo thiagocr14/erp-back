@@ -1,3 +1,5 @@
+using ErpAcademico.Domain.Exceptions;
+
 namespace ErpAcademico.Domain.Entities;
 
 public class Produto
@@ -19,6 +21,8 @@ public class Produto
     public int EstoqueIdeal { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
+
+    public bool Ativo { get; private set; }
 
     // Propriedade calculada
     public decimal ValorTotalEmEstoque =>
@@ -57,42 +61,56 @@ public class Produto
         EstoqueIdeal = estoqueIdeal;
 
         CreatedAt = DateTime.UtcNow;
+        Ativo = true;
     }
+public void Desativar()
+{
+    Ativo = false;
+}
 
-    public void DebitarEstoque(int quantidade)
-    {
-        if (quantidade <= 0)
-            throw new ArgumentException("Quantidade inválida.");
+public void Reativar()
+{
+    Ativo = true;
+}
+    public void DebitarEstoque(
+    int quantidade)
+{
+    if (quantidade <= 0)
+        throw new NegocioException(
+            "Quantidade inválida.");
 
-        if (QuantidadeAtual < quantidade)
-            throw new InvalidOperationException("Estoque insuficiente.");
+    if (QuantidadeAtual < quantidade)
+        throw new NegocioException(
+            "Estoque insuficiente.");
 
-        QuantidadeAtual -= quantidade;
-    }
+    QuantidadeAtual -= quantidade;
+}
 
     public void AdicionarEstoque(
     int quantidade)
 {
     if (quantidade <= 0)
-        throw new Exception(
+        throw new NegocioException(
             "Quantidade inválida.");
 
     QuantidadeAtual += quantidade;
 }
 
-    public void ReporEstoque(int quantidade)
-    {
-        if (quantidade <= 0)
-            throw new ArgumentException("Quantidade inválida.");
+    public void ReporEstoque(
+    int quantidade)
+{
+    if (quantidade <= 0)
+        throw new NegocioException(
+            "Quantidade inválida.");
 
-        QuantidadeAtual += quantidade;
-    }
+    QuantidadeAtual += quantidade;
+}
 
     public void AtualizarPrecoVenda(decimal precoVenda)
     {
         if (precoVenda < 0)
-            throw new ArgumentException("Preço inválido.");
-
+            throw new NegocioException(
+    "Preço inválido.");
         PrecoVenda = precoVenda;
     }
 
@@ -108,21 +126,21 @@ public class Produto
     int novaQuantidade)
 {
     if (novaQuantidade < 0)
-        throw new Exception(
+       throw new NegocioException(
             "Quantidade inválida.");
 
     QuantidadeAtual = novaQuantidade;
 }
-    public void BaixarEstoque(int quantidade)
+    public void BaixarEstoque(
+    int quantidade)
 {
     if (quantidade <= 0)
-        throw new Exception(
+        throw new NegocioException(
             "Quantidade inválida.");
 
     if (QuantidadeAtual < quantidade)
-        throw new Exception(
+        throw new NegocioException(
             "Estoque insuficiente.");
-            
 
     QuantidadeAtual -= quantidade;
 }
