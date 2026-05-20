@@ -196,7 +196,8 @@ app.MapGet("/", () => Results.Ok(new {
 app.MapMethods("/", new[] { "HEAD" }, () => Results.Ok());
 
 app.UseCors(policy => policy
-    .AllowAnyOrigin()
+    .WithOrigins("https://erp-front-pearl.vercel.app") // Seu novo link da Vercel!
     .AllowAnyMethod()
-    .AllowAnyHeader());
+    .AllowAnyHeader()
+    .AllowCredentials()); // Importante para o tráfego de Cookies/JWT se necessário
 app.Run();
