@@ -185,5 +185,13 @@ app.MapControllers();
 //
 //    db.Database.Migrate();
 //}
+// Endpoint de Health Check para o Render saber que a API está online
+app.MapGet("/", () => Results.Ok(new { 
+    status = "Healthy", 
+    projeto = "BikeFlow ERP", 
+    ambiente = "Production" 
+}));
 
+// Opcional: Se quiser dar suporte ao método HEAD que o Render usou
+app.MapMethods("/", new[] { "HEAD" }, () => Results.Ok());
 app.Run();

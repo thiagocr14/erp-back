@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ErpAcademico.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cff28e3f19c4d6f4401fbdac5073e7e4f9af64c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd4bd1269337371a7bf8a278be639c2a09eca5b5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ErpAcademico.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ErpAcademico.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
