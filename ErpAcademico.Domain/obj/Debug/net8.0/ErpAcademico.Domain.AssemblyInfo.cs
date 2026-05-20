@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ErpAcademico.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd4bd1269337371a7bf8a278be639c2a09eca5b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ea12375d6fa64ff3378303fb257c300e59f2bb9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ErpAcademico.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ErpAcademico.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
