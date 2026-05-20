@@ -194,4 +194,9 @@ app.MapGet("/", () => Results.Ok(new {
 
 // Opcional: Se quiser dar suporte ao método HEAD que o Render usou
 app.MapMethods("/", new[] { "HEAD" }, () => Results.Ok());
+
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 app.Run();
