@@ -188,7 +188,7 @@ app.MapControllers();
 // Endpoint de Health Check para o Render saber que a API está online
 app.MapGet("/", () => Results.Ok(new { 
     status = "Healthy", 
-    projeto = "BikeFlow ERP", 
+    projeto = "WIP importaçoes ERP", 
     ambiente = "Production" 
 }));
 
