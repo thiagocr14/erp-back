@@ -158,11 +158,12 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy.WithOrigins(
-                "http://localhost:3000",
-                "http://172.16.22.28:3000"
-              )
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+            "http://localhost:3000",
+            "http://172.16.22.28:3000",
+            "https://erp-front-delta.vercel.app"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
@@ -182,5 +183,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider
+        .GetRequiredService<AppDbContext>();
+
+    db.Database.Migrate();
+}
 
 app.Run();
