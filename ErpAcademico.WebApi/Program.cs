@@ -32,8 +32,6 @@ builder.Services.AddScoped<EstoqueService>();
 
 builder.Services.AddScoped<MovimentacaoEstoqueService>();
 
-builder.Services.AddScoped<RelatorioService>();
-
 builder.Services.AddScoped<AuthService>();
 
 builder.Services
